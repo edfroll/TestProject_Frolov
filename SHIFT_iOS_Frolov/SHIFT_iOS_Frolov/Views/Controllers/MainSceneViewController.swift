@@ -9,16 +9,24 @@ import UIKit
 
 class MainSceneViewController: UIViewController {
     
+    private let label = UILabel()
+    
     // MARK: - Подключение ViewModel и UserStorage Service
     private let viewModel = MainSceneViewModel()
     private let userStorage = UserStorage()
-    private let label = UILabel()
-    
 
     // MARK: - Жизненный цикл, инициализация MainScene
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        
+        // Кнопка "Выйти"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(
+            title: "Выйти",
+            style: .plain,
+            target: self,
+            action: #selector(logout)
+            )
         
         view.addSubview(tableView)
         view.addSubview(buttonGreeting)
@@ -61,7 +69,7 @@ class MainSceneViewController: UIViewController {
         ])
     }
     
-    // MARK: - Метод появление модального окна
+    // MARK: - Actions
     @objc private func actionGreeting() {
         let userName = userStorage.getUserName() ?? "Гость"
         
@@ -70,6 +78,10 @@ class MainSceneViewController: UIViewController {
         modalVC.modalTransitionStyle = .crossDissolve
         
         present(modalVC, animated: true)
+    }
+    
+    @objc private func logout() {
+        userStorage.clearUserName()
     }
     
 }

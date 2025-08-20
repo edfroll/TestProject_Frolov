@@ -16,4 +16,8 @@ class UserStorage {
     func getUserName() -> String? {
         UserDefaults.standard.string(forKey: userNameKey)
     }
+    
+    func clearUserName() {
+        UserDefaults.standard.removeObject(forKey: userNameKey)
+    }
 }
