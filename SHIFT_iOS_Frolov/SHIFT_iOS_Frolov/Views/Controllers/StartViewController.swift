@@ -15,6 +15,11 @@ class StartViewController: UIViewController, UITextFieldDelegate {
     // MARK: - Метод жизненного цикла
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if userStorage.getUserName() != nil {
+            pushOn(vc: MainSceneViewController())
+        }
+        
         setupUI()
         setupActions()
     }

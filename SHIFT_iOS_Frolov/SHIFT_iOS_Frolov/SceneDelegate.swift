@@ -16,12 +16,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         
         guard let _ = (scene as? UIWindowScene) else { return }
-        
-        if userStorage.getUserName() == nil {
-            window?.rootViewController = UINavigationController(rootViewController: StartViewController())
-        } else {
-            window?.rootViewController = UINavigationController(rootViewController: MainSceneViewController())
-        }
+
+        window?.rootViewController = UINavigationController(rootViewController: StartViewController())
         
     }
 

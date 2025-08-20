@@ -9,8 +9,6 @@ import UIKit
 
 class MainSceneViewController: UIViewController {
     
-    private let label = UILabel()
-    
     // MARK: - Подключение ViewModel и UserStorage Service
     private let viewModel = MainSceneViewModel()
     private let userStorage = UserStorage()
@@ -27,6 +25,8 @@ class MainSceneViewController: UIViewController {
             target: self,
             action: #selector(logout)
             )
+        
+        navigationItem.hidesBackButton = true
         
         view.addSubview(tableView)
         view.addSubview(buttonGreeting)
@@ -82,6 +82,7 @@ class MainSceneViewController: UIViewController {
     
     @objc private func logout() {
         userStorage.clearUserName()
+        navigationController?.popToRootViewController(animated: true)
     }
     
 }
